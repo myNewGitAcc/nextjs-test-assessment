@@ -1,14 +1,11 @@
 @import 'tailwindcss';
+@import './design-tokens/breakpoints.css';
 @import './design-tokens/typography.css';
 
 html {
   color-scheme: light dark;
   --page-bg: theme('colors.white');
   --page-fg: theme('colors.neutral.900');
-}
-
-@theme {
-  --breakpoint-tablet: 767px;
 }
 
 @media (prefers-color-scheme: dark) {
