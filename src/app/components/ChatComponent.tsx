@@ -38,7 +38,7 @@ export function ChatComponent() {
   }
 
   return (
-    <div className="flex min-h-0 w-full max-w-xl flex-1 flex-col overflow-hidden">
+    <div className="flex min-h-0 w-full flex-1 flex-col overflow-hidden">
       <div className="mb-3 flex shrink-0 items-center justify-between gap-3 bg-(--page-bg)">
         <h1 className="text-heading">Chat with consultant</h1>
         <p
