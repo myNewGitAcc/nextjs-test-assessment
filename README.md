@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Consultant chat - assessment
 
-## Getting Started
+Test assessment for a frontend developer position. Full requirements: [`task-description.md`](./task-description.md).
 
-First, run the development server:
+## Prerequisites
+
+- [Node.js](https://nodejs.org/en/download)
+- [pnpm](https://pnpm.io/installation)
+- A `.env` file in the project root (copy `.env.example` for local setup)
+
+## Run
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm run-dev   # WebSocket echo server + Next.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000/chat](http://localhost:3000/chat).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Useful scripts:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pnpm server    # WebSocket echo only (default port 8081)
+pnpm dev       # Next.js only
+```
 
-## Learn More
+## What’s implemented
 
-To learn more about Next.js, take a look at the following resources:
+- **Meetings list** — loaded on the server, then kept in sync with TanStack Query; **Refresh** refetches without a full page reload
+- **WebSocket chat** — messages show up immediately (optimistic); connection status is visible
+- **Disconnect handling** — failed messages stay in the list, resend automatically after reconnect, or via **Retry**
+- **Auto-reconnect** — no page reload needed
+- **Responsive layout** — side-by-side on tablet+; swipeable panels with dots on smaller screens
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Server / client boundary
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Server:** `/chat` page (async RSC) prefetches meetings and passes dehydrated TanStack Query state into the tree, so the list HTML is in the first response (visible with JS disabled). `GET /api/meetings` is a Route Handler.
+- **Client:** anything that needs browser APIs or interaction — `MeetingsList` (Refresh), `ChatComponent` / chat hook (WebSocket, optimistic UI), `PanelWorkspace` (scroll + breakpoint), and the Query `Providers` wrapper.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The split is where interactivity starts: data for the meetings list can be prepared on the server; sockets, clicks, and local UI state cannot.
