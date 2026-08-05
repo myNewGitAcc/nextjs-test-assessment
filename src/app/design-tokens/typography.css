@@ -15,7 +15,7 @@
   --letter-spacing-default: 0em;
 }
 
-@media (min-width: 768px) {
+@media (min-width: theme(--breakpoint-tablet)) {
   :root {
     /* Desktop — heading */
     --font-size-heading: 2rem;
