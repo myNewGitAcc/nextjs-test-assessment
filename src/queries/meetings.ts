@@ -13,9 +13,11 @@ type MeetingsResponse = {
 
 const meetingsQueryKey = ['meetings'] as const;
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
 function getMeetingsUrl() {
   if (typeof window === 'undefined') {
-    return `${process.env.NEXT_PUBLIC_APP_URL}/api/meetings`;
+    return `${baseUrl}/api/meetings`;
   }
 
   return '/api/meetings';
