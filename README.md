@@ -31,6 +31,8 @@ pnpm dev       # Next.js only
 - **Disconnect handling** — failed messages stay in the list, resend automatically after reconnect, or via **Retry**
 - **Auto-reconnect** — no page reload needed
 - **Responsive layout** — side-by-side on tablet+; swipeable panels with dots on smaller screens
+- **Redirection from the root** — default page is /chat
+- **404 handling** — custom page
 
 ## Server / client boundary
 
