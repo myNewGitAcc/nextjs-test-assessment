@@ -7,6 +7,10 @@ html {
   --page-fg: theme('colors.neutral.900');
 }
 
+@theme {
+  --breakpoint-tablet: 767px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     --page-bg: theme('colors.neutral.950');
