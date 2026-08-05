@@ -9,10 +9,7 @@ export default function MeetingsList() {
 
   return (
     <section className="flex h-full min-h-0 w-full max-w-md shrink-0 flex-col overflow-y-auto relative">
-      <div
-        id="header"
-        className="sticky top-0 mb-3 flex shrink-0 items-center justify-between gap-3 bg-(--page-bg)"
-      >
+      <div className="sticky top-0 mb-3 flex shrink-0 items-center justify-between gap-3 bg-(--page-bg)">
         <h2 className="text-heading">Meetings</h2>
         <button
           type="button"
