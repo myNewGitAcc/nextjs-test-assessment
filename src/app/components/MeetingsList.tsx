@@ -3,6 +3,7 @@
 import { formatMeetingDate } from '@/app/utils/formatMeetingDate';
 import { meetingsQueryOptions } from '@/queries/meetings';
 import { useQuery } from '@tanstack/react-query';
+import clsx from 'classnames';
 
 export default function MeetingsList() {
   const { data, error, isFetching, refetch } = useQuery(meetingsQueryOptions);
@@ -34,7 +35,16 @@ export default function MeetingsList() {
             >
               <p className="font-medium">{meeting.title}</p>
               <p className="text-sm text-neutral-600">
-                {formatMeetingDate(meeting.date)} · {meeting.status}
+                {formatMeetingDate(meeting.date)} ·{' '}
+                <span
+                  className={clsx({
+                    'text-emerald-600': meeting.status === 'completed',
+                    'text-amber-600': meeting.status === 'scheduled',
+                    'text-red-500': meeting.status === 'cancelled',
+                  })}
+                >
+                  {meeting.status}
+                </span>
               </p>
             </li>
           ))}
