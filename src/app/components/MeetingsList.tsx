@@ -8,7 +8,7 @@ export default function MeetingsList() {
   const { data, error, isFetching, refetch } = useQuery(meetingsQueryOptions);
 
   return (
-    <section className="flex h-full min-h-0 w-full max-w-md shrink-0 flex-col overflow-y-auto relative">
+    <section className="relative flex h-full min-h-0 w-full shrink-0 flex-col overflow-y-auto">
       <div className="sticky top-0 mb-3 flex shrink-0 items-center justify-between gap-3 bg-(--page-bg)">
         <h2 className="text-heading">Meetings</h2>
         <button
@@ -28,7 +28,10 @@ export default function MeetingsList() {
       ) : (
         <ul className="flex flex-col gap-2">
           {data?.map((meeting) => (
-            <li key={meeting.id} className="border-b border-neutral-200 py-2">
+            <li
+              key={meeting.id}
+              className="border-b border-neutral-200 py-2 tablet:max-w-60"
+            >
               <p className="font-medium">{meeting.title}</p>
               <p className="text-sm text-neutral-600">
                 {formatMeetingDate(meeting.date)} · {meeting.status}
