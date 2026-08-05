@@ -26,9 +26,11 @@ export default function MeetingsList() {
         <p role="alert" className="text-red-500">
           Failed to load meetings.
         </p>
+      ) : !data?.length ? (
+        <p className="text-sm text-neutral-500">No meetings yet.</p>
       ) : (
         <ul className="flex flex-col gap-2">
-          {data?.map((meeting) => (
+          {data.map((meeting) => (
             <li
               key={meeting.id}
               className="border-b border-neutral-200 py-2 tablet:max-w-60"
