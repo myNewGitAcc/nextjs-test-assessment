@@ -90,7 +90,7 @@ export function ChatComponent() {
         >
           Send
           <br />
-          (ctrl+enter)
+          <span className="max-tablet:hidden">(ctrl+enter)</span>
         </button>
       </form>
     </div>
