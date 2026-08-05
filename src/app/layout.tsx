@@ -1,4 +1,5 @@
 import Providers from '@/app/providers';
+import clsx from 'classnames';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './global.css';
@@ -22,7 +23,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={clsx(
+        geistSans.variable,
+        geistMono.variable,
+        'h-full antialiased',
+      )}
     >
       <body className="flex h-full min-h-screen flex-col items-center text-default">
         <Providers>{children}</Providers>
