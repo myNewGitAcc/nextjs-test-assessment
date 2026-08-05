@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+@import './design-tokens/typography.css';
+
+html {
+  color-scheme: light dark;
+  --page-bg: theme('colors.white');
+  --page-fg: theme('colors.neutral.900');
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    --page-bg: theme('colors.neutral.950');
+    --page-fg: theme('colors.neutral.50');
+  }
+}
+
+body {
+  background-color: var(--page-bg);
+  color: var(--page-fg);
+}
+
+a {
+  color: theme('colors.sky.400');
+  text-decoration: underline;
+}
